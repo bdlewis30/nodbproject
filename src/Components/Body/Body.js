@@ -23,8 +23,8 @@ export default class Body extends Component {
         return (
             <div className="main">
                 <section className="header">Header</section>
-                {/* <input value={this.state.text} onChange={ (event) => {this.handleChange(event.target.value)}} />
-                <button>Submit</button> */}
+                <input value={this.state.text} onChange={ (event) => {this.handleChange(event.target.value)}} />
+                <button>Submit</button>
             </div>
         )
     }
