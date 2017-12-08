@@ -1,0 +1,6 @@
+.main-page {
+    background: url('./Components/img/mountain.jpeg');
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
