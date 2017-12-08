@@ -6,25 +6,37 @@ export default class Body extends Component {
         super();
 
         this.state = {
-            text: 'Start Typing'
+            state: '',
+            city: ''
         }
     }
-    handleChange(event){
+    handleChangeState(value) {
         this.setState({
-            text: event.target.value
+            state: this.event.target.value
         })
     }
 
-    handleButton(){
-        alert(this.state.text)
+    handleChangeCity(value) {
+        this.setState({
+            city: this.event.target.value
+        })
+    }
+
+    handleButton() {
+        alert(`Your request to find a hiking trail in ${this.state.city}, ${this.state.state} has been sent.`)
     }
 
     render() {
         return (
-            <div className="main">
-                <section className="header">Header</section>
-                <input value={this.state.text} onChange={ (event) => {this.handleChange(event.target.value)}} />
-                <button>Submit</button>
+            <div className="main-page">
+                <section className="header">Find Your Place</section>
+                <div className="input-boxes">
+                    <input className="input-one" placeholder="City" onChange={(event) => { this.handleChangeCity(event.target.value) }} />
+                    <input className="input-two" placeholder="State" onChange={(event) => { this.handleChangeState(event.target.value) }} />
+                </div>
+                <div className="submit-btn">
+                    <button>Submit</button>
+                </div>
             </div>
         )
     }

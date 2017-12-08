@@ -7,7 +7,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <header></header>
         <Body />
       </div>
     );
