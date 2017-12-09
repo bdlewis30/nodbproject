@@ -1,4 +1,4 @@
-var tasks = [{description: 'walk the dog', completed: false}];
+var tasks = [{description: 'Take a walk!', completed: false}];
 
 module.exports = {
     create: (req, res) => {

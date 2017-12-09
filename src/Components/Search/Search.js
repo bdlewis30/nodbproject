@@ -1,44 +1,58 @@
 import React, { Component } from 'react';
 import './Search.css';
+import axios from 'axios';
+import config from '../../config';
 
 export default class Search extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
-            locState: '',
-            city: ''
+            searchState: '',
+            searchCity: '',
+            radius: ''
         }
-        
-        this.handleChangeState = this.handleChangeState.bind(this);
-        this.handleChangeCity = this.handleChangeCity.bind(this);
-        this.handleButton = this.handleButton.bind(this); 
-    }
-    
-    handleChangeCity(value) {
-        console.log(this.state.city)
-        this.setState({city: value});
+
+        this.handleState = this.handleState.bind(this);
+        this.handleCity = this.handleCity.bind(this);
+        this.handleButton = this.handleButton.bind(this);
+        this.handleRadius = this.handleRadius.bind(this);
     }
 
-    handleChangeState(value) {
-        console.log(this.state.locState)
-        this.setState({locState: value});
+    handleCity(value) {
+        console.log(this.state.searchCity)
+        this.setState({ searchCity: value });
+    }
+
+    handleState(value) {
+        console.log(this.state.searchState)
+        this.setState({ searchState: value });
+    }
+
+    handleRadius(value) {
+        console.log(this.state.radius)
+        this.setState({ radius: value })
     }
 
     handleButton() {
-        return alert(`Your request to find a hiking trail in ${this.state.city}, ${this.state.locState}, has been sent.`);
+        axios.get(`https://trailapi-trailapi.p.mashape.com/?q[activities_activity_type_name_eq]=hiking&q[city_cont]=${this.state.searchCity}&q[state_cont]=${this.state.searchState}&radius=${this.state.radius}`, config.apiHeader)
+            .then(result => {
+                console.log(result);
+            });
+        return alert(`Your request to find hiking trails within a ${this.state.radius} mile radius of ${this.state.searchCity}, ${this.state.searchState}, has been sent.`);
+            
     }
 
     render() {
         return (
             <div>
-                {/* <section className="header">Find Your Place</section> */}
                 <div className="input-boxes">
-                    <input className="input-one" placeholder="City" value={this.state.city} onChange={(event) => this.handleChangeCity(event.target.value) } />
-                    <input className="input-two" placeholder="State" value={this.state.locState} onChange={(event) => this.handleChangeState(event.target.value) } />
+                    <input placeholder="City" value={this.state.searchCity} onChange={(event) => this.handleCity(event.target.value)} />
+                    <input placeholder="State" value={this.state.searchState} onChange={(event) => this.handleState(event.target.value)} />
+                    <input placeholder="Mile Radius" value={this.state.radius} onChange={(event) => this.handleRadius(event.target.value)} />
                 </div>
                 <div className="submit-btn">
-                    <button onClick={ this.handleButton }>Submit</button>
+                    <button onClick={this.handleButton}>Submit</button>
                 </div>
             </div>
         )

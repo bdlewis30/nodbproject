@@ -10,24 +10,14 @@
     box-shadow: 5px 10px 18px #888888;
 }
 
-.input-one {
+input {
     width: 200px;
     height: 50px;
     padding: 10px 10px;
     font-size: 20px;
     border-radius: 20px;
     text-align: center;
-    font-family: 'Comfortaa', cursive; 
-}
-
-.input-two {
-    width: 200px;
-    height: 50px;
-    padding: 10px 10px;
-    font-size: 20px;
-    border-radius: 20px;
-    text-align: center;
-    font-family: 'Comfortaa', cursive; 
+    font-family: 'Comfortaa'; 
 }
 
 .submit-btn {
@@ -39,7 +29,9 @@ button {
     padding: 10px 40px;
     color: white;
     font-size: 20px;
+    border: solid white 1px;
     border-radius: 30px;
     box-shadow: 5px 10px 18px #888888;
-    font-family: 'Comfortaa', cursive; 
+    font-family: 'Comfortaa'; 
+    margin-bottom: 50px;
 }
