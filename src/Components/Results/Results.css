@@ -8,3 +8,11 @@
     font-size: 1em;
     display: block;
 }
+
+.glyphicon-remove{
+    color: red;
+}
+
+.glyphicon-remove:active{
+   color: gray;
+}

@@ -37,21 +37,21 @@ export default class Results extends Component {
         })
     }
 
-    handleDescriptionChange(event){
+    handleDescriptionChange(event) {
         this.setState({
             description: event.target.value
         })
     }
 
-    updateDesc(){
-        axios.put('/api/' + this.state.id, {description: this.state.description});
+    updateDesc() {
+        axios.put('/api/' + this.state.id, { description: this.state.description });
     }
 
-    deleteTrail(){
+    deleteTrail() {
         axios.delete('/api/' + this.state.id)
-        .then(() => {
-            this.props.deletedTrail();
-        })
+            .then(() => {
+                this.props.deletedTrail();
+            })
     }
 
 
@@ -60,19 +60,19 @@ export default class Results extends Component {
             <tr>
                 <td>{this.state.name}</td>
                 <td>{this.state.city}, {this.state.state}</td>
-                <td><textarea onChange={this.handleDescriptionChange} onBlur={this.updateDesc} value={this.state.description}/></td>
+                <td><textarea onChange={this.handleDescriptionChange} onBlur={this.updateDesc} value={this.state.description} /></td>
                 {/* <td>{this.state.directions}</td> */}
                 <th><a href={this.state.map} target="_blank" rel="noopener noreferrer" >Map</a></th>
                 <td>{this.state.latitude}</td>
                 <td>{this.state.longitude}</td>
-                <td><span className="glyphicon glyphicon-remove" onClick={this.deleteTrail}/></td>
+                <td><span className="glyphicon glyphicon-remove" onClick={this.deleteTrail} /></td>
             </tr>
         )
     }
 }
 
 Results.defaultProps = {
-    deletedTrail: function(){}
+    deletedTrail: function () { }
 }
 
 Results.propTypes = {
