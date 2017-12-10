@@ -35,3 +35,13 @@ button {
     font-family: 'Comfortaa'; 
     margin-bottom: 50px;
 }
+
+.trail-table {
+    max-height: 290px;
+    overflow: auto;
+    background: white;
+}
+
+.bsClass {
+    background: #E7E7E9;
+}

@@ -2,48 +2,74 @@ import React, { Component } from 'react';
 import './Search.css';
 import axios from 'axios';
 import config from '../../config';
+import Results from '../Results/Results';
+import { Table } from 'react-bootstrap';
 
 export default class Search extends Component {
     constructor() {
         super();
 
         this.state = {
-            searchState: '',
-            searchCity: '',
-            radius: ''
+            searchState: 'Oregon',
+            searchCity: 'Portland',
+            radius: '25',
+            searchResults: []
         }
 
         this.handleState = this.handleState.bind(this);
         this.handleCity = this.handleCity.bind(this);
         this.handleButton = this.handleButton.bind(this);
         this.handleRadius = this.handleRadius.bind(this);
+        this.getList = this.getList.bind(this);
     }
 
     handleCity(value) {
-        console.log(this.state.searchCity)
         this.setState({ searchCity: value });
     }
 
     handleState(value) {
-        console.log(this.state.searchState)
         this.setState({ searchState: value });
     }
 
     handleRadius(value) {
-        console.log(this.state.radius)
         this.setState({ radius: value })
     }
 
     handleButton() {
         axios.get(`https://trailapi-trailapi.p.mashape.com/?q[activities_activity_type_name_eq]=hiking&q[city_cont]=${this.state.searchCity}&q[state_cont]=${this.state.searchState}&radius=${this.state.radius}`, config.apiHeader)
             .then(result => {
-                console.log(result);
+                let results = result.data.places.map(e => {
+                    return {
+                        name: e.name,
+                        city: e.city,
+                        state: e.state,
+                        description: e.description,
+                        // directions: e.direction,
+                        map: `https://www.google.com/maps/@${e.lat},${e.lon},15z`,
+                        lat: e.lat,
+                        lon: e.lon,
+                        unique_id: e.unique_id
+                    }
+                })
+                axios.post('/api/', results)
+                .then(myApiResult => {
+                    this.getList();
+                })
             });
-        return alert(`Your request to find hiking trails within a ${this.state.radius} mile radius of ${this.state.searchCity}, ${this.state.searchState}, has been sent.`);
-            
+    }
+
+    getList(){
+        axios.get('/api/')
+        .then(result => {
+            this.setState({ searchResults: result.data});            
+        })
     }
 
     render() {
+        let trailsToDisplay = this.state.searchResults.map((element, index) => {
+            return (<Results key={index} result={element} deletedTrail={this.getList} />)
+        })
+
         return (
             <div>
                 <div className="input-boxes">
@@ -53,6 +79,27 @@ export default class Search extends Component {
                 </div>
                 <div className="submit-btn">
                     <button onClick={this.handleButton}>Submit</button>
+                </div>
+                <div className="trail-table">
+                    {trailsToDisplay.length > 0 &&
+                        <Table striped responsive hover condensed>
+                            <thead>
+                                <tr>
+                                    <th>Trail Name</th>
+                                    <th>City, State</th>
+                                    <th>Description</th>
+                                    {/* <th>Directions</th> */}
+                                    <th>Map</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {trailsToDisplay}
+                            </tbody>
+                        </Table>
+                    }
                 </div>
             </div>
         )

@@ -6,7 +6,9 @@
     "axios": "^0.17.1",
     "cors": "^2.8.4",
     "mapbox-gl": "^0.42.2",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^16.2.0",
     "react-flex": "^2.2.8",
     "react-scripts": "1.0.17"

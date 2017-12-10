@@ -11,10 +11,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // endpoints
+app.get('/api/', trailCtrl.get);
 app.post('/api/', trailCtrl.create);
-app.put('/api/', trailCtrl.update);
-app.put('/api/', trailCtrl.complete);
-app.delete('/api/', trailCtrl.delete);
+app.put('/api/:id', trailCtrl.update);
+app.delete('/api/:id', trailCtrl.delete);
 
 
 const port = 4000;

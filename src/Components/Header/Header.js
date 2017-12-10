@@ -4,13 +4,12 @@ import './Header.css'
 export default class Header extends Component {
     render() {
         return (
-            // Place method here to call Login.js
             <div>
                 <h1>Find A Trail</h1>
-                <div className="header-btn">
+                {/* <div className="header-btn">
                     <button className="header-btn">Create Account</button>
                     <button className="header-btn">Login</button>
-                </div>
+                </div> */}
             </div>
         )
     }
