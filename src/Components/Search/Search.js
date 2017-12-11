@@ -11,9 +11,9 @@ export default class Search extends Component {
         super();
 
         this.state = {
-            searchState: 'Oregon',
-            searchCity: 'Portland',
-            radius: '25',
+            searchState: '',
+            searchCity: '',
+            radius: '',
             searchResults: []
         }
 
