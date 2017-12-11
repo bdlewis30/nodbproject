@@ -12,7 +12,6 @@ export default class Results extends Component {
             city: props.result.city,
             state: props.result.state,
             description: props.result.description || '',
-            // directions: props.result.direction,
             map: `https://www.google.com/maps/@${props.result.latitude},${props.result.longitude},15z`,
             latitude: props.result.latitude,
             longitude: props.result.longitude,
@@ -29,7 +28,6 @@ export default class Results extends Component {
             city: newProps.result.city,
             state: newProps.result.state,
             description: newProps.result.description || '',
-            // directions: newProps.result.direction,
             map: `https://www.google.com/maps/@${newProps.result.latitude},${newProps.result.longitude},15z`,
             latitude: newProps.result.latitude,
             longitude: newProps.result.longitude,
@@ -54,19 +52,17 @@ export default class Results extends Component {
             })
     }
 
-
     render() {
         return (
-            <tr>
-                <td>{this.state.name}</td>
-                <td>{this.state.city}, {this.state.state}</td>
-                <td><textarea onChange={this.handleDescriptionChange} onBlur={this.updateDesc} value={this.state.description} /></td>
-                {/* <td>{this.state.directions}</td> */}
-                <th><a href={this.state.map} target="_blank" rel="noopener noreferrer" >Map</a></th>
-                <td>{this.state.latitude}</td>
-                <td>{this.state.longitude}</td>
-                <td><span className="glyphicon glyphicon-remove" onClick={this.deleteTrail} /></td>
-            </tr>
+                <tr>
+                    <td>{this.state.name}</td>
+                    <td>{this.state.city}, {this.state.state}</td>
+                    <td><textarea onChange={this.handleDescriptionChange} onBlur={this.updateDesc} value={this.state.description} /></td>
+                    <td><a href={this.state.map} target="_blank" rel="noopener noreferrer" >Map</a></td>
+                    <td>{this.state.latitude}</td>
+                    <td>{this.state.longitude}</td>
+                    <td><span className="glyphicon glyphicon-remove" onClick={this.deleteTrail} /></td>
+                </tr>
         )
     }
 }

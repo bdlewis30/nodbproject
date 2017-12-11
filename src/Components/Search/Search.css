@@ -40,4 +40,10 @@ button {
     max-height: 290px;
     overflow: auto;
     background: white;
+    display: block;
+}
+
+th {
+    background: #3C3A3F;
+    color: white;
 }

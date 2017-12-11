@@ -4,15 +4,16 @@ import axios from 'axios';
 import config from '../../config';
 import Results from '../Results/Results';
 import { Table } from 'react-bootstrap';
+import Found from '../Found/Found';
 
 export default class Search extends Component {
     constructor() {
         super();
 
         this.state = {
-            searchState: '',
-            searchCity: '',
-            radius: '',
+            searchState: 'Oregon',
+            searchCity: 'Portland',
+            radius: '25',
             searchResults: []
         }
 
@@ -44,7 +45,6 @@ export default class Search extends Component {
                         city: e.city,
                         state: e.state,
                         description: e.description,
-                        // directions: e.direction,
                         map: `https://www.google.com/maps/@${e.lat},${e.lon},15z`,
                         lat: e.lat,
                         lon: e.lon,
@@ -52,18 +52,19 @@ export default class Search extends Component {
                     }
                 })
                 axios.post('/api/', results)
-                .then(myApiResult => {
-                    this.getList();
-                })
+                    .then(myApiResult => {
+                        this.getList();
+                    })
             });
     }
 
-    getList(){
+    getList() {
         axios.get('/api/')
-        .then(result => {
-            this.setState({ searchResults: result.data});            
-        })
+            .then(result => {
+                this.setState({ searchResults: result.data });
+            })
     }
+
 
     render() {
         let trailsToDisplay = this.state.searchResults.map((element, index) => {
@@ -80,6 +81,7 @@ export default class Search extends Component {
                 <div className="submit-btn">
                     <button onClick={this.handleButton}>Submit</button>
                 </div>
+                {this.state.searchResults.length > 0 ? <Found trailsFound={this.state.searchResults.length}/>: null}
                 <div className="trail-table">
                     {trailsToDisplay.length > 0 &&
                         <Table striped responsive hover condensed>
@@ -88,11 +90,10 @@ export default class Search extends Component {
                                     <th>Trail Name</th>
                                     <th>City, State</th>
                                     <th>Description</th>
-                                    {/* <th>Directions</th> */}
                                     <th>Map</th>
                                     <th>Latitude</th>
                                     <th>Longitude</th>
-                                    <th></th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
