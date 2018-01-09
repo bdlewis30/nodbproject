@@ -1,26 +1,19 @@
-
-.footer-container {
+footer{
     width: 100%;
     height: 50px;
-    margin-top: 10px; 
-    /* background: coral; */
-    display: block;
-    position: absolute;
+    background: #3C3A3F;
     bottom: 0px;
+    display: flex;
+    align-items: center;
 }
 
-footer{
-    position: absolute;
-    bottom: 0px;
-}
-
-p {
-    position: absolute;
-    margin: 30px 10px;
+.footer-text {
     color: white;
     font-size: 12px;
+    margin-left: 20px;
 }
 
-a {
-    color: gray;
+footer a {
+    color: white;
+    text-decoration: underline;
 }

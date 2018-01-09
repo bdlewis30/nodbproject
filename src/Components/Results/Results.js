@@ -46,29 +46,28 @@ export default class Results extends Component {
     }
 
     deleteTrail() {
-        axios.delete('/api/' + this.state.id)
-            .then(() => {
-                this.props.deletedTrail();
-            })
+        axios.delete('/api/' + this.state.id).then(() => {
+            this.props.deletedTrail()
+        })
     }
 
     render() {
         return (
-                <tr>
-                    <td>{this.state.name}</td>
-                    <td>{this.state.city}, {this.state.state}</td>
-                    <td><textarea onChange={this.handleDescriptionChange} onBlur={this.updateDesc} value={this.state.description} /></td>
-                    <td><a href={this.state.map} target="_blank" rel="noopener noreferrer" >Map</a></td>
-                    <td>{this.state.latitude}</td>
-                    <td>{this.state.longitude}</td>
-                    <td><span className="glyphicon glyphicon-remove" onClick={this.deleteTrail} /></td>
-                </tr>
+            <tr>
+                <td>{this.state.name}</td>
+                <td>{this.state.city}, {this.state.state}</td>
+                <td><textarea onChange={this.handleDescriptionChange} onBlur={this.updateDesc} value={this.state.description} /></td>
+                <td><a href={this.state.map} target="_blank" rel="noopener noreferrer" >Map</a></td>
+                <td>{this.state.latitude}</td>
+                <td>{this.state.longitude}</td>
+                <td><span className="glyphicon glyphicon-remove" onClick={this.deleteTrail} /></td>
+            </tr>
         )
     }
 }
 
 Results.defaultProps = {
-    deletedTrail: function () { }
+    deletedTrail: function () {}
 }
 
 Results.propTypes = {

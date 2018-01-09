@@ -5,15 +5,16 @@ import config from '../../config';
 import Results from '../Results/Results';
 import { Table } from 'react-bootstrap';
 import Found from '../Found/Found';
+import Footer from '../Footer/Footer';
 
 export default class Search extends Component {
     constructor() {
         super();
 
         this.state = {
-            searchState: '',
-            searchCity: '',
-            radius: '',
+            searchState: 'OR',
+            searchCity: 'Portland',
+            radius: 25,
             searchResults: []
         }
 
@@ -65,11 +66,12 @@ export default class Search extends Component {
             })
     }
 
-
     render() {
         let trailsToDisplay = this.state.searchResults.map((element, index) => {
             return (<Results key={index} result={element} deletedTrail={this.getList} />)
         })
+
+        let displayFooter = this.state.searchResults.length > 0 ? <Footer /> : null;
 
         return (
             <div>
@@ -79,12 +81,12 @@ export default class Search extends Component {
                     <input placeholder="Mile Radius" value={this.state.radius} onChange={(event) => this.handleRadius(event.target.value)} />
                 </div>
                 <div className="submit-btn">
-                    <button onClick={this.handleButton}>Submit</button>
+                    <button className="button" onClick={this.handleButton}>Submit</button>
                 </div>
-                {this.state.searchResults.length > 0 ? <Found trailsFound={this.state.searchResults.length}/>: null}
-                <div className="trail-table">
+                {this.state.searchResults.length > 0 ? <Found trailsFound={this.state.searchResults.length} /> : null}
+                <div className="trail-table" >
                     {trailsToDisplay.length > 0 &&
-                        <Table striped responsive hover condensed>
+                        <Table striped responsive hover condensed >
                             <thead>
                                 <tr>
                                     <th>Trail Name</th>
@@ -102,6 +104,7 @@ export default class Search extends Component {
                         </Table>
                     }
                 </div>
+                {displayFooter}
             </div>
         )
     }

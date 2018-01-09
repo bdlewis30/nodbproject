@@ -35,7 +35,7 @@ module.exports = {
         res.json(trails[index]);
     },
     delete: (req, res) => {
-       var index = findTrail(req.params.id)
+       var index = findTrail(req.params.id);
        if(index >= 0){
          trails.splice(index, 1);
        }

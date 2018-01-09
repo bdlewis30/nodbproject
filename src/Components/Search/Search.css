@@ -24,7 +24,7 @@ input {
     display: flex;
     justify-content: center;
 }
-button {
+.button {
     background: cornflowerblue;
     padding: 10px 40px;
     color: white;
@@ -36,8 +36,12 @@ button {
     margin-bottom: 50px;
 }
 
+table {
+    width: 100%;
+}
+
 .trail-table {
-    max-height: 290px;
+    max-height: 448px;
     overflow: auto;
     background: white;
     display: block;
