@@ -17,8 +17,8 @@ app.put('/api/:id', trailCtrl.update);
 app.delete('/api/:id', trailCtrl.delete);
 
 
-const port = 4000;
+const server_port = 4000;
 
-app.listen(port, () => {
-    console.log(`I'm listening on port ${port}`)
+app.listen(server_port, () => {
+    console.log(`I'm listening on port ${server_port}`)
 })

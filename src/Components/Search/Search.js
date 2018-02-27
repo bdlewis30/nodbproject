@@ -12,9 +12,9 @@ export default class Search extends Component {
         super();
 
         this.state = {
-            searchState: 'OR',
-            searchCity: 'Portland',
-            radius: 25,
+            searchState: '',
+            searchCity: '',
+            radius: '',
             searchResults: []
         }
 
